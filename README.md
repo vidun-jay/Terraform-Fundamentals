@@ -4,7 +4,7 @@ This repository is for my notes on Terraform basics following [freecodecamp.org]
 
 The first step to any terraform deployment is to specify which cloud provider you will be using. For our example, we will use AWS and so the syntax will look like this:
 
-```json
+```terraform
 provider "aws" {
     region = "us-east-1"
     access_key = "xxxxxxxxxxxxxxxxxxx"
@@ -18,7 +18,7 @@ The `access_key` and `secret_key` will be taken from the security credentials pa
 
 Resources in Terraform are all deployed using the same syntax:
 
-```json
+```terraform
 resource "<provder>_<resource_type>" "name" {
 	config options...
 	key = "value"
@@ -32,7 +32,7 @@ For our example, we’ll look at how to deploy an EC2 instance using Terraform; 
 
 Now let’s take a look at how to do this using Terraform.
 
-```json
+```terraform
 resource "aws_instance" "my-first-server" {
     ami = "ami-053b0d53c279acc90"
     instance_type = "t2.micro"
@@ -215,7 +215,7 @@ Note that running `terraform apply` a second time would not create another new i
 
 Now, we can update our terraform configuration by, let’s say adding some tags:
 
-```json
+```terraform
 resource "aws_instance" "my-first-server" {
     ami = "ami-053b0d53c279acc90"
     instance_type = "t2.micro"
@@ -296,7 +296,7 @@ aws_secret_access_key = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 Now, you can update the Terraform code to use the `default` profile instead of exposing secret keys:
 
-```json
+```terraform
 provider "aws" {
     region = "us-east-1"
     # aws access key and secret key taken from .aws
